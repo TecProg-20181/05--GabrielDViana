@@ -2,7 +2,7 @@ import sys
 import unittest
 
 from diskspace.diskspace import *
-import subprocess
+import os
 
 class Test(unittest.TestCase):
     def test_bytes_to_readable(self):
@@ -18,4 +18,10 @@ class Test(unittest.TestCase):
         result = '50.00Kb'
         self.assertEquals(result, bytes_to_readable(blocks))
 
+    def test_show_space_list(self):
+        self.assertIsNone(show_space_list())
 
+    def test_subprocess_check_output(self):
+        func = subprocess_check_output('pwd')
+        cwd = os.getcwd()+'\n'
+        self.assertEquals(cwd, func)
